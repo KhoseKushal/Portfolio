@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKERHUB_CREDENTIALS = 'dockerhub-creds'
-        IMAGE_NAME = '<dockerhub-username>/kushal-devops-app'
+        IMAGE_NAME = 'khosekushal/kushal-devops-app'
         IMAGE_TAG = 'v2'
     }
 
