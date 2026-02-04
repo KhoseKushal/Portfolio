@@ -38,6 +38,17 @@ pipeline {
                 }
             }
         }
+	
+	stage('Deploy to Kubernetes') {
+	    steps {
+		echo 'Deploying to Kubernetes'
+		sh '''
+		  kubectl set image deployment/kushal-app kushal-app=$IMAGE_NAME:$IMAGE_TAG
+		'''
+	    }
+	}
+
     }
 }
+
 

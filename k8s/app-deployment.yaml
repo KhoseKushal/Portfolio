@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kushal-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kushal-app
+  template:
+    metadata:
+      labels:
+        app: kushal-app
+    spec:
+      containers:
+      - name: kushal-app
+        image: khosekushal/kushal-devops-app:v2
+        ports:
+        - containerPort: 80
+
