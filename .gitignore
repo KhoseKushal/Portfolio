@@ -1,0 +1,8 @@
+# Binaries
+minikube-linux-amd64
+*.bin
+
+# OS / temp
+*.log
+*.tmp
+
