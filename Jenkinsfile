@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKERHUB_CREDENTIALS = 'dockerhub-creds'
         IMAGE_NAME = 'khosekushal/kushal-devops-app'
-        IMAGE_TAG = 'v2'
+        IMAGE_TAG = '${BUILD_NUMBER}'
     }
 
     stages {
