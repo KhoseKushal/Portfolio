@@ -22,14 +22,24 @@ pipeline {
         }
 
         stage('Push Image to Docker Hub') {
-            steps {
-                sh 'docker push $IMAGE_NAME:$IMAGE_TAG'
-            }
+          steps {
+              withCredentials([usernamePassword(
+                 credentialsId: 'dockerhub-creds',
+                 usernameVariable: 'DOCKER_USER',
+                 passwordVariable: 'DOCKER_PASS'
+              )]) {
+                  sh '''
+                     echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+                     docker push khosekushal/kushal-devops-app:${BUILD_NUMBER}
+                     '''
+              }
+          }
         }
 
         stage('Deploy to Kubernetes') {
             steps {
                 sh '''
+                  export KUBECONFIG=/root/.kube/config
                   kubectl set image deployment/kushal-app \
                   kushal-app=$IMAGE_NAME:$IMAGE_TAG
                 '''
